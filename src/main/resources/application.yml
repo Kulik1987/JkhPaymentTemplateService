@@ -1,0 +1,13 @@
+spring:
+    main:
+      banner-mode: log
+    datasource:
+        url: jdbc:postgresql://localhost:5432/postgres
+        username: postgres
+        password: 1987
+    jpa:
+        database: postgresql
+        database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+
+data:
+    url: http://suggestions.dadata.ru

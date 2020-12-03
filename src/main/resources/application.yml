@@ -1,13 +1,22 @@
 spring:
-    main:
-      banner-mode: log
-    datasource:
-        url: jdbc:postgresql://localhost:5432/postgres
-        username: postgres
-        password: 1987
-    jpa:
-        database: postgresql
-        database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+  main:
+    banner-mode: log
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres;
+    username: postgres
+    password: 1987
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ddl-auto: create-drop
+  flyway:
+    check-location: false
 
 data:
-    url: http://suggestions.dadata.ru
+  url: http://suggestions.dadata.ru

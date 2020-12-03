@@ -1,15 +1,19 @@
 package ru.kulikovskiy.jkh.jkhpaymenttemplate.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Data
+@Table(name = "house")
+@AllArgsConstructor
+@NoArgsConstructor
 public class House {
     @Id
     @Column(name = "house_guid")
@@ -40,7 +44,7 @@ public class House {
     private Date updateDate;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "house_organization", joinColumns = @JoinColumn(name = "houses_guid"), inverseJoinColumns =@JoinColumn(name = "orgs_guid"))
+    @JoinTable(name = "house_organization", joinColumns = @JoinColumn(name = "houses_guid"), inverseJoinColumns = @JoinColumn(name = "orgs_guid"))
     private Set<Organization> organizationsHouse;
 
     @Override

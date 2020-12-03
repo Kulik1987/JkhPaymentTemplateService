@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import ru.kulikovskiy.jkh.jkhpaymenttemplate.entity.Organization;
-import ru.kulikovskiy.jkh.jkhpaymenttemplate.entity.OrganizationsList;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 

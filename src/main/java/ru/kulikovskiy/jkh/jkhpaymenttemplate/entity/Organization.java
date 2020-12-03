@@ -2,8 +2,9 @@ package ru.kulikovskiy.jkh.jkhpaymenttemplate.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.context.annotation.Lazy;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,6 +14,8 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "organization")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Organization {
     @Id
     @Column(name = "guid")
@@ -32,6 +35,14 @@ public class Organization {
     @JsonIgnore
     @ManyToMany(mappedBy = "organizationsHouse")
     Set<House> houses;
+
+    public Organization(String guid, String address, String cite, String phone, String shortName) {
+        this.guid = guid;
+        this.address = address;
+        this.cite = cite;
+        this.phone = phone;
+        this.shortName = shortName;
+    }
 
     @Override
     public boolean equals(Object o) {

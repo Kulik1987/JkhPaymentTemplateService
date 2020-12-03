@@ -1,13 +1,16 @@
 package ru.kulikovskiy.jkh.jkhpaymenttemplate.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.kulikovskiy.jkh.jkhpaymenttemplate.config.DaDataConfig;
-import ru.kulikovskiy.jkh.jkhpaymenttemplate.dto.*;
+import ru.kulikovskiy.jkh.jkhpaymenttemplate.dto.AddJkhTemplateRequestDto;
+import ru.kulikovskiy.jkh.jkhpaymenttemplate.dto.JkhTemplateResponseDto;
+import ru.kulikovskiy.jkh.jkhpaymenttemplate.dto.JkhTemplatesClientResponseDto;
+import ru.kulikovskiy.jkh.jkhpaymenttemplate.dto.ModifyJkhTemplateRequestDto;
 import ru.kulikovskiy.jkh.jkhpaymenttemplate.entity.*;
 import ru.kulikovskiy.jkh.jkhpaymenttemplate.exception.NotFoundException;
 import ru.kulikovskiy.jkh.jkhpaymenttemplate.mapper.JkhTemplateMapper;
@@ -29,30 +32,24 @@ import static java.util.Optional.ofNullable;
 @Service
 @Slf4j
 public class JkhTemplateServiceImpl implements JkhTemplateService {
-    private final ClientRepository clientRepository;
-    private final RestTemplate daDataResttemplate;
-    private final DaDataConfig daDataConfig;
-    private final HouseRepository houseRepository;
-    private final ObjectMapper objectMapper;
-    private final JkhTemplateRepository jkhTemplateRepository;
-    private final JkhTemplateMapper jkhTemplateMapper;
-    private final OrganizationsMapper organizationsMapper;
-    private final OrganizationRepository organizationRepository;
-    private final JkhTemplatesClientMapper jkhTemplatesClientMapper;
-
-
-    public JkhTemplateServiceImpl(ClientRepository clientRepository, RestTemplate daDataResttemplate, DaDataConfig daDataConfig, HouseRepository houseRepository, ObjectMapper objectMapper, JkhTemplateRepository jkhTemplateRepository, JkhTemplateMapper jkhTemplateMapper, OrganizationsMapper organizationsMapper, OrganizationRepository organizationRepository, JkhTemplatesClientMapper jkhTemplatesClientMapper) {
-        this.clientRepository = clientRepository;
-        this.daDataResttemplate = daDataResttemplate;
-        this.daDataConfig = daDataConfig;
-        this.houseRepository = houseRepository;
-        this.objectMapper = objectMapper;
-        this.jkhTemplateRepository = jkhTemplateRepository;
-        this.jkhTemplateMapper = jkhTemplateMapper;
-        this.organizationsMapper = organizationsMapper;
-        this.organizationRepository = organizationRepository;
-        this.jkhTemplatesClientMapper = jkhTemplatesClientMapper;
-    }
+    @Autowired
+    private ClientRepository clientRepository;
+    @Autowired
+    private RestTemplate daDataResttemplate;
+    @Autowired
+    private DaDataConfig daDataConfig;
+    @Autowired
+    private HouseRepository houseRepository;
+    @Autowired
+    private JkhTemplateRepository jkhTemplateRepository;
+    @Autowired
+    private JkhTemplateMapper jkhTemplateMapper;
+    @Autowired
+    private OrganizationsMapper organizationsMapper;
+    @Autowired
+    private OrganizationRepository organizationRepository;
+    @Autowired
+    private JkhTemplatesClientMapper jkhTemplatesClientMapper;
 
     @Override
     public List<JkhTemplatesClientResponseDto> getJkhTemplatesList(String clientId) throws NotFoundException {
